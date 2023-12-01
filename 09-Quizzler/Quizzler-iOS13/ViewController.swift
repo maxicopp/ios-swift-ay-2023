@@ -30,25 +30,36 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateUI()
+        progressBar.progress = 0
     }
     
     
     @IBAction func answerButtonPressed(_ sender: UIButton) {
         let userAnswer = sender.currentTitle!
         let actualAnswer = quiz[questionNumber].answer
+        sender.layer.cornerRadius = 20
         
         if userAnswer == actualAnswer {
-            print("Correct")
+            sender.backgroundColor = UIColor.green
         } else {
-            print("Wrong")
+            sender.backgroundColor = UIColor.red
         }
         
-        questionNumber = (questionNumber + 1) % quiz.count
-        updateUI()
+        sender.isUserInteractionEnabled = false
+        
+        Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { (timer) in
+            self.questionNumber = (self.questionNumber + 1) % self.quiz.count
+            self.updateUI()
+            
+            sender.isUserInteractionEnabled = true
+        }
     }
     
     func updateUI() {
+        trueButton.backgroundColor = .clear
+        falseButton.backgroundColor = .clear
         questionLabel.text = quiz[questionNumber].text
+        progressBar.progress = Float(questionNumber + 1) / Float(quiz.count)
     }
     
     
