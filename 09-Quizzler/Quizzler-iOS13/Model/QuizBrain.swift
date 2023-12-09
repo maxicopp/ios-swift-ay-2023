@@ -12,39 +12,39 @@ struct QuizBrain {
         Question(q: "What alcoholic drink is made from molasses?", a: ["Rum", "Whisky", "Gin"], correctAnswer: "Rum"),
         Question(q: "What type of animal was Harambe?", a: ["Panda", "Gorilla", "Crocodile"], correctAnswer: "Gorilla"),
         Question(q: "Where is Tasmania located?", a: ["Indonesia", "Australia", "Scotland"], correctAnswer: "Australia")
-
-
+        
+        
     ]
-
+    
     var questionNumber = 0
     var score = 0
-
+    
     func getScore() -> Int {
         return score
     }
-
+    
     func getAnswerOptions() -> [String] {
         return quiz[questionNumber].answer
-}
-
+    }
+    
     mutating func nextQuestion() {
         questionNumber += 1
-
+        
         if questionNumber >= quiz.count {
             questionNumber = 0
             score = 0
         }
     }
-
+    
     mutating func checkAnswer(_ userAnswer: String) -> Bool {
         if quiz[questionNumber].answer.contains(userAnswer) {
-        if userAnswer == quiz[questionNumber].correctAnswer {
-            score += 1
-            return true
+            if userAnswer == quiz[questionNumber].correctAnswer {
+                score += 1
+                return true
+            }
         }
+        return false
     }
-    return false
-}
 }
 
 
