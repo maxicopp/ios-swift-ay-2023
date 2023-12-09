@@ -49,11 +49,10 @@ class ViewController: UIViewController {
     
     func updateAnswerOptions() {
         let answerOptions = quizBrain.getAnswerOptions()
-        // Suponiendo que tienes botones para mostrar las opciones de respuesta
+
         button1.setTitle(answerOptions[0], for: .normal)
         button2.setTitle(answerOptions[1], for: .normal)
         button3.setTitle(answerOptions[2], for: .normal)
-        // Configura otros botones si hay más opciones
     }
     
     
